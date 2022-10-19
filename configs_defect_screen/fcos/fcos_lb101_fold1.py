@@ -1,5 +1,10 @@
 _base_ = ['../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py']
 
+
+classes = ['liewen', 'bengque', 'baidian', 'huahen', 'louguang', 'wuzi', 'pomo']
+num_classes = len(classes)
+
+
 model = dict(
     type='FCOS',
     backbone=dict(
@@ -22,7 +27,7 @@ model = dict(
         relu_before_extra_convs=True),
     bbox_head=dict(
         type='FCOSHead',
-        num_classes=80,
+        num_classes=num_classes,
         in_channels=256,
         stacked_convs=4,
         feat_channels=256,

@@ -1,12 +1,12 @@
 _base_ = [
-    '../_base_/datasets/defect_screen_LB101_detection_fold1.py',
+    '../_base_/datasets/defect_screen_LB201_detection_fold1.py',
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py']
 
 classes = ['liewen', 'bengque', 'baidian', 'huahen', 'louguang', 'wuzi', 'pomo']
 num_classes = len(classes)
 
 model = dict(
-    type='GFL',
+    type='ATSS',
     backbone=dict(
         type='ResNet',
         depth=50,
@@ -25,7 +25,7 @@ model = dict(
         add_extra_convs='on_output',
         num_outs=5),
     bbox_head=dict(
-        type='GFLHead',
+        type='ATSSHead',
         num_classes=num_classes,
         in_channels=256,
         stacked_convs=4,
@@ -36,14 +36,19 @@ model = dict(
             octave_base_scale=8,
             scales_per_octave=1,
             strides=[8, 16, 32, 64, 128]),
+        bbox_coder=dict(
+            type='DeltaXYWHBBoxCoder',
+            target_means=[.0, .0, .0, .0],
+            target_stds=[0.1, 0.1, 0.2, 0.2]),
         loss_cls=dict(
-            type='QualityFocalLoss',
+            type='FocalLoss',
             use_sigmoid=True,
-            beta=2.0,
+            gamma=2.0,
+            alpha=0.25,
             loss_weight=1.0),
-        loss_dfl=dict(type='DistributionFocalLoss', loss_weight=0.25),
-        reg_max=16,
-        loss_bbox=dict(type='GIoULoss', loss_weight=2.0)),
+        loss_bbox=dict(type='GIoULoss', loss_weight=2.0),
+        loss_centerness=dict(
+            type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0)),
     # training and testing settings
     train_cfg=dict(
         assigner=dict(type='ATSSAssigner', topk=9),
@@ -64,4 +69,5 @@ checkpoint_config = dict(interval=-1)
 evaluation = dict(interval=1, metric='bbox', save_best='bbox_mAP')
 
 
-load_from="./checkpoints/gfl_r50_fpn_1x_coco.pth"
+load_from="./checkpoints/atss_r50_fpn_1x_coco_20200209-985f7bd0.pth"
+

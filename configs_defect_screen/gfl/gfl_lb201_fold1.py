@@ -1,5 +1,5 @@
 _base_ = [
-    '../_base_/datasets/defect_screen_LB101_detection_fold1.py',
+    '../_base_/datasets/defect_screen_LB201_detection_fold1.py',
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py']
 
 classes = ['liewen', 'bengque', 'baidian', 'huahen', 'louguang', 'wuzi', 'pomo']
