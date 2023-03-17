@@ -1,7 +1,7 @@
 # SSGD: A SMARTPHONE SCREEN GLASS DATASET FOR DEFECT DETECTION
 ![part-1](figures/vis_part1.jpg)
 <!-- ![part-2](figures/vis_part2.jpg) -->
-####  [Paper (ArXiv)](https://arxiv.org/pdf/2303.06673.pdf) | [Results](./RESULT.md) | [Download(Baidu)]( https://pan.baidu.com/s/1Q7U4RnL7rQasyJ7METnjyg?pwd=yghp) | [Download(TsinghuaCloud)](https://cloud.tsinghua.edu.cn/f/0a03abd18c0f4038a9c4/?dl=1)
+####  [Paper (ArXiv)](https://arxiv.org/pdf/2303.06673.pdf) | [Results](./RESULT.md) | [Download(Baidu)]( https://pan.baidu.com/s/1YePYG74EyoN_Dqg9AQXW4A?pwd=qeaq) | [Download(TsinghuaCloud)](https://cloud.tsinghua.edu.cn/f/d4fc3cc51da64871bbf1/?dl=1)
 
 
 ### SSGD
